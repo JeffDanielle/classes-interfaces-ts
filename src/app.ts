@@ -1,7 +1,8 @@
 class Department {
     // private id: string
     // private name: string;
-    private employees: string[] = [];
+    // Available on class that extends department class
+    protected employees: string[] = [];
     // short-hand initialization
     // readonly property cannot be changed after initialization
     constructor(private readonly id: string, public name: string) {
@@ -37,6 +38,13 @@ class AccountingDepartment extends Department {
         super(id, "Accounting");
     }
 
+    addEmployee(name: string): void {
+        if (name === "Jeff") {
+            return;
+        }
+        this.employees.push(name);
+    }
+
     addReport(text: string) {
         this.reports.push(text);
     }
@@ -58,8 +66,10 @@ console.log(it);
 const accounting = new AccountingDepartment("d2", []);
 
 accounting.addReport("Report 1");
-accounting.addReport("Report 2");
+accounting.addEmployee("Jeff");
+accounting.addEmployee("Pisot");
 accounting.printReports();
+accounting.printEmployeeInformation();
 
 // const accountingCopy = {name: "DUMMY", describe: accounting.describe};
 

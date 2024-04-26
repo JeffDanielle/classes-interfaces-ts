@@ -21,6 +21,7 @@ var Department = /** @class */ (function () {
         this.name = name;
         // private id: string
         // private name: string;
+        // Available on class that extends department class
         this.employees = [];
         // this.name = name;
         // this.id = id;
@@ -56,6 +57,12 @@ var AccountingDepartment = /** @class */ (function (_super) {
         _this.reports = reports;
         return _this;
     }
+    AccountingDepartment.prototype.addEmployee = function (name) {
+        if (name === "Jeff") {
+            return;
+        }
+        this.employees.push(name);
+    };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
     };
@@ -72,7 +79,9 @@ it.printEmployeeInformation();
 console.log(it);
 var accounting = new AccountingDepartment("d2", []);
 accounting.addReport("Report 1");
-accounting.addReport("Report 2");
+accounting.addEmployee("Jeff");
+accounting.addEmployee("Pisot");
 accounting.printReports();
+accounting.printEmployeeInformation();
 // const accountingCopy = {name: "DUMMY", describe: accounting.describe};
 // accountingCopy.describe();
