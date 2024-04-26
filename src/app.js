@@ -30,10 +30,6 @@ var Department = /** @class */ (function () {
     Department.createEmployee = function (name) {
         return { name: name };
     };
-    // Special parameter which refers to the property of the department class
-    Department.prototype.describe = function () {
-        console.log("Department (".concat(this.id, "): ").concat(this.name));
-    };
     Department.prototype.addEmployee = function (employee) {
         this.employees.push(employee);
     };
@@ -53,6 +49,9 @@ var ITDepartment = /** @class */ (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log("IT Department - ID: ".concat(this.id));
+    };
     return ITDepartment;
 }(Department));
 var AccountingDepartment = /** @class */ (function (_super) {
@@ -81,6 +80,9 @@ var AccountingDepartment = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.prototype.describe = function () {
+        console.log("Accounting Department - ID: ".concat(this.id));
+    };
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === "Jeff") {
             return;
@@ -110,7 +112,8 @@ accounting.addReport("Report 1");
 accounting.mostRecentReport;
 accounting.addEmployee("Jeff");
 accounting.addEmployee("Pisot");
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
 // const accountingCopy = {name: "DUMMY", describe: accounting.describe};
 // accountingCopy.describe();

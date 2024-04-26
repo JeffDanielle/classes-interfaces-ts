@@ -1,4 +1,4 @@
-class Department {
+abstract class Department {
     static fiscalYear = 2022;
     // private id: string
     // private name: string;
@@ -6,7 +6,7 @@ class Department {
     protected employees: string[] = [];
     // short-hand initialization
     // readonly property cannot be changed after initialization
-    constructor(private readonly id: string, public name: string) {
+    constructor(protected readonly id: string, public name: string) {
         // this.name = name;
         // this.id = id;
     }
@@ -17,9 +17,7 @@ class Department {
     }
 
     // Special parameter which refers to the property of the department class
-    describe(this: Department) {
-        console.log(`Department (${this.id}): ${this.name}`);
-    }
+    abstract describe(this: Department): void;
 
     addEmployee(employee: string) {
         this.employees.push(employee);
@@ -36,6 +34,10 @@ class ITDepartment extends Department {
     constructor(id: string, public admins: string[]) {
         // Super fetch the base constructor from the parent class
         super(id, "IT");
+    }
+
+    describe() {
+        console.log(`IT Department - ID: ${this.id}`);
     }
 }
 
@@ -61,6 +63,10 @@ class AccountingDepartment extends Department {
     constructor(id: string, public reports: string[]) {
         super(id, "Accounting");
         this.lastReport = reports[0];
+    }
+
+    describe() {
+        console.log(`Accounting Department - ID: ${this.id}`);
     }
 
     addEmployee(name: string): void {
@@ -100,8 +106,9 @@ accounting.mostRecentReport;
 
 accounting.addEmployee("Jeff");
 accounting.addEmployee("Pisot");
-accounting.printReports();
-accounting.printEmployeeInformation();
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
 
 // const accountingCopy = {name: "DUMMY", describe: accounting.describe};
 
