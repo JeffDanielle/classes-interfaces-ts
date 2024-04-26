@@ -26,6 +26,10 @@ var Department = /** @class */ (function () {
         // this.name = name;
         // this.id = id;
     }
+    // Static method allows us to call it without creating an instance
+    Department.createEmployee = function (name) {
+        return { name: name };
+    };
     // Special parameter which refers to the property of the department class
     Department.prototype.describe = function () {
         console.log("Department (".concat(this.id, "): ").concat(this.name));
@@ -37,6 +41,7 @@ var Department = /** @class */ (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2022;
     return Department;
 }());
 // Inheritance
@@ -87,10 +92,12 @@ var AccountingDepartment = /** @class */ (function (_super) {
         this.lastReport = text;
     };
     AccountingDepartment.prototype.printReports = function () {
-        console.log("Reports: ".concat(this.reports));
+        console.log(this.reports);
     };
     return AccountingDepartment;
 }(Department));
+var employee1 = Department.createEmployee("Marlon");
+console.log(employee1, Department.fiscalYear);
 var it = new ITDepartment("d1", ["Jeff"]);
 it.addEmployee("Jeff");
 it.addEmployee("Marlon");
@@ -100,7 +107,7 @@ console.log(it);
 var accounting = new AccountingDepartment("d2", []);
 accounting.mostRecentReport = "Year End Report";
 accounting.addReport("Report 1");
-console.log(accounting.mostRecentReport);
+accounting.mostRecentReport;
 accounting.addEmployee("Jeff");
 accounting.addEmployee("Pisot");
 accounting.printReports();

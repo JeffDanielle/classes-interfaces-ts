@@ -1,4 +1,5 @@
 class Department {
+    static fiscalYear = 2022;
     // private id: string
     // private name: string;
     // Available on class that extends department class
@@ -8,6 +9,11 @@ class Department {
     constructor(private readonly id: string, public name: string) {
         // this.name = name;
         // this.id = id;
+    }
+
+    // Static method allows us to call it without creating an instance
+    static createEmployee(name: string) {
+        return {name};
     }
 
     // Special parameter which refers to the property of the department class
@@ -70,9 +76,12 @@ class AccountingDepartment extends Department {
     }
 
     printReports() {
-        console.log(`Reports: ${this.reports}`);
+        console.log(this.reports);
     }
 }
+
+const employee1 = Department.createEmployee("Marlon");
+console.log(employee1, Department.fiscalYear);
 
 const it = new ITDepartment("d1", ["Jeff"]);
 
@@ -87,7 +96,7 @@ const accounting = new AccountingDepartment("d2", []);
 
 accounting.mostRecentReport = "Year End Report";
 accounting.addReport("Report 1");
-console.log(accounting.mostRecentReport);
+accounting.mostRecentReport;
 
 accounting.addEmployee("Jeff");
 accounting.addEmployee("Pisot");
