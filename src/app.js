@@ -1,5 +1,6 @@
 var Department = /** @class */ (function () {
     // short-hand initialization
+    // readonly property cannot be changed after initialization
     function Department(id, name) {
         this.id = id;
         this.name = name;

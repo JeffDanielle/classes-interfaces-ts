@@ -3,7 +3,8 @@ class Department {
     // private name: string;
     private employees: string[] = [];
     // short-hand initialization
-    constructor(private id: string, public name: string) {
+    // readonly property cannot be changed after initialization
+    constructor(private readonly id: string, public name: string) {
         // this.name = name;
         // this.id = id;
     }
