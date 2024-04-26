@@ -55,8 +55,27 @@ var AccountingDepartment = /** @class */ (function (_super) {
     function AccountingDepartment(id, reports) {
         var _this = _super.call(this, id, "Accounting") || this;
         _this.reports = reports;
+        _this.lastReport = reports[0];
         return _this;
     }
+    Object.defineProperty(AccountingDepartment.prototype, "mostRecentReport", {
+        // getter must return something
+        get: function () {
+            if (this.lastReport) {
+                return this.lastReport;
+            }
+            throw new Error("No report found.");
+        },
+        // setter must accept something
+        set: function (value) {
+            if (!value) {
+                throw new Error("Please pass in a valid value!");
+            }
+            this.addReport(value);
+        },
+        enumerable: false,
+        configurable: true
+    });
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === "Jeff") {
             return;
@@ -65,6 +84,7 @@ var AccountingDepartment = /** @class */ (function (_super) {
     };
     AccountingDepartment.prototype.addReport = function (text) {
         this.reports.push(text);
+        this.lastReport = text;
     };
     AccountingDepartment.prototype.printReports = function () {
         console.log("Reports: ".concat(this.reports));
@@ -78,7 +98,9 @@ it.describe();
 it.printEmployeeInformation();
 console.log(it);
 var accounting = new AccountingDepartment("d2", []);
+accounting.mostRecentReport = "Year End Report";
 accounting.addReport("Report 1");
+console.log(accounting.mostRecentReport);
 accounting.addEmployee("Jeff");
 accounting.addEmployee("Pisot");
 accounting.printReports();
