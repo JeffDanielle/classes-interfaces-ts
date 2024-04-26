@@ -24,13 +24,42 @@ class Department {
     }
 }
 
-const accounting = new Department("d1", "Accounting");
+// Inheritance
+class ITDepartment extends Department {
+    constructor(id: string, public admins: string[]) {
+        // Super fetch the base constructor from the parent class
+        super(id, "IT");
+    }
+}
 
-accounting.addEmployee("Jeff");
-accounting.addEmployee("Marlon");
+class AccountingDepartment extends Department {
+    constructor(id: string, public reports: string[]) {
+        super(id, "Accounting");
+    }
 
-accounting.describe();
-accounting.printEmployeeInformation();
+    addReport(text: string) {
+        this.reports.push(text);
+    }
+
+    printReports() {
+        console.log(`Reports: ${this.reports}`);
+    }
+}
+
+const it = new ITDepartment("d1", ["Jeff"]);
+
+it.addEmployee("Jeff");
+it.addEmployee("Marlon");
+
+it.describe();
+it.printEmployeeInformation();
+console.log(it);
+
+const accounting = new AccountingDepartment("d2", []);
+
+accounting.addReport("Report 1");
+accounting.addReport("Report 2");
+accounting.printReports();
 
 // const accountingCopy = {name: "DUMMY", describe: accounting.describe};
 
