@@ -1,6 +1,7 @@
 // Interface describe structure of an object
 interface Greetable {
-    name: string;
+    // In an interface we can define readonly properties
+    readonly name: string;
 
     greet(phrase: string): void;
 }
