@@ -10,3 +10,4 @@ var Person = /** @class */ (function () {
 var user1;
 user1 = new Person("Jeff");
 user1.greet("Hi, my name is");
+// Interface enforces structure of an object which secures a certain class to have a certain structure
