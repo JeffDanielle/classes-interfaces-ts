@@ -1,8 +1,11 @@
-// Interface describe structure of an object
-interface Greetable {
+interface Named {
     // In an interface we can define readonly properties
     readonly name: string;
+}
 
+// Interface describe structure of an object
+// Ability to also inherit from another interface
+interface Greetable extends Named {
     greet(phrase: string): void;
 }
 
