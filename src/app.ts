@@ -12,8 +12,9 @@ add = (n1: number, n2: number) => {
 };
 
 interface Named {
-    // In an interface we can define readonly properties
-    readonly name: string;
+    // In an interface we can define readonly properties; in addition we can define optional properties
+    readonly name?: string;
+    outputName?: string;
 }
 
 // Interface describe structure of an object
@@ -24,20 +25,27 @@ interface Greetable extends Named {
 
 class Person implements Greetable {
     // Must satisfy the setup of interface to be able to use it
-    name: string;
+    name?: string;
+    age = 30;
 
-    constructor(n: string) {
-        this.name = n;
+    constructor(n?: string) {
+        if (n) {
+            this.name = n;
+        }
     }
 
     greet(phrase: string) {
-        console.log(`${phrase} ${this.name}`);
+        if (this.name) {
+            console.log(`${phrase} ${this.name}`);
+        } else {
+            console.log("Hi!");
+        }
     }
 }
 
 let user1: Greetable;
 
-user1 = new Person("Jeff");
+user1 = new Person();
 
 user1.greet("Hi, my name is");
 
