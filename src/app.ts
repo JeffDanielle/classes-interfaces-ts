@@ -1,3 +1,16 @@
+// Interface can describe structure of a function
+// type AddFn = (a: number, b: number) => number;
+interface AddFn {
+    // function in an interface
+    (a: number, b: number): number;
+}
+
+let add: AddFn;
+
+add = (n1: number, n2: number) => {
+    return n1 + n2;
+};
+
 interface Named {
     // In an interface we can define readonly properties
     readonly name: string;
